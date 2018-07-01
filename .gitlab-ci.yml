@@ -7,7 +7,7 @@ variables:
 
 before_script:
     - rustup update
-    - rustup componenet add rust-src
+    - rustup component add rust-src
     - cargo install cargo-config xargo
     - pushd bootloader-efi
     - rustup update
