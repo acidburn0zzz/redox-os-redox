@@ -6,9 +6,6 @@ variables:
   GIT_CHECKOUT: "true"
 
 before_script:
-    - rustup update
-    - rustup component add rust-src
-    - cargo install cargo-config xargo
     - pushd bootloader-efi
     - rustup update
     - rustup component add rust-src
