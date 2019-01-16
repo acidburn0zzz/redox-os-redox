@@ -42,11 +42,6 @@ RANLIB=$(TARGET)-gcc-ranlib
 READELF=$(TARGET)-readelf
 STRIP=$(TARGET)-strip
 
-# Rust cross compile variables
-export AR_$(subst -,_,$(TARGET))=$(TARGET)-ar
-export CC_$(subst -,_,$(TARGET))=$(TARGET)-gcc
-export CXX_$(subst -,_,$(TARGET))=$(TARGET)-g++
-
 # Kernel variables
 KTARGET=$(ARCH)-unknown-none
 KBUILD=build/kernel
@@ -54,3 +49,12 @@ KBUILD=build/kernel
 # Userspace variables
 export TARGET=$(ARCH)-unknown-redox
 BUILD=build/userspace
+
+# Rust cross compile variables
+export AR_$(subst -,_,$(TARGET))=$(TARGET)-ar
+export CC_$(subst -,_,$(TARGET))=$(TARGET)-gcc
+export CXX_$(subst -,_,$(TARGET))=$(TARGET)-g++
+
+export AR_$(subst -,_,$(KTARGET))=$(TARGET)-ar
+export CC_$(subst -,_,$(KTARGET))=$(TARGET)-gcc
+export CXX_$(subst -,_,$(KTARGET))=$(TARGET)-g++
