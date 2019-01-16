@@ -87,9 +87,7 @@ qemu_nvme_no_build: build/extra.qcow2
 		-drive file=build/extra.qcow2,if=none,id=drv0 -device nvme,drive=drv0,serial=NVME_SERIAL
 
 qemu_live: build/livedisk.bin build/extra.qcow2
-	$(QEMU) $(QEMUFLAGS) \
-		-drive file=build/livedisk.bin,format=raw \
-		-drive file=build/extra.qcow2
+	$(QEMU) $(QEMUFLAGS)
 
 qemu_live_no_build: build/extra.qcow2
 	$(QEMU) $(QEMUFLAGS) \
