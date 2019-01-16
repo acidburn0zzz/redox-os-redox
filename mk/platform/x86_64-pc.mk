@@ -1,1 +1,2 @@
-# Empty file
+QEMU_RAM_SZ=2048
+QEMU_MACHINE=q35

@@ -1,10 +1,11 @@
 QEMU=SDL_VIDEO_X11_DGAMOUSE=0 qemu-system-$(ARCH)
 QEMUFLAGS=-serial mon:stdio -d cpu_reset -d guest_errors
-QEMUFLAGS+=-smp 4 -m 2048
+QEMUFLAGS+=-smp 4 -m $(QEMU_RAM_SZ)
+QEMUFLAGS+=$(PLATFORM_QEMUFLAGS)
 ifeq ($(iommu),yes)
-	QEMUFLAGS+=-machine q35,iommu=on
+	QEMUFLAGS+=-machine $(QEMU_MACHINE),iommu=on
 else
-	QEMUFLAGS+=-machine q35
+	QEMUFLAGS+=-machine $(QEMU_MACHINE)
 endif
 ifneq ($(audio),no)
 	QEMUFLAGS+=-device ich9-intel-hda -device hda-duplex

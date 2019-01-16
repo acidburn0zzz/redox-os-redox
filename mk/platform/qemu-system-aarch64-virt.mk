@@ -1,1 +1,3 @@
-# Empty file
+QEMU_RAM_SZ=1024
+QEMU_MACHINE=virt
+PLATFORM_QEMUFLAGS=-cpu cortex-a57 -bios $(UBOOT)
