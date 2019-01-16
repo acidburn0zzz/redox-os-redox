@@ -16,5 +16,8 @@ QEMU_RAM_SZ=1024
 QEMU_MACHINE=virt
 PLATFORM_QEMUFLAGS=-cpu cortex-a57 -bios $(UBOOT)
 
+KLOADADDR=0x40000000
+KENTRYADDR=0x40001000
+
 build/livedisk.bin: build/kernel_live
 	cp $< $@
