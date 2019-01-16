@@ -1,5 +1,6 @@
 # Configuration
 ARCH?=x86_64
+PLATFORM?=x86_64-pc
 INSTALLER_FLAGS?=--cookbook=cookbook
 PREFIX_RUSTC?=0
 
