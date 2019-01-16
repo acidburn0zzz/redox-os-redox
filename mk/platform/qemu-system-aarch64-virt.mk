@@ -6,6 +6,12 @@ ifeq ("$(wildcard $(UBOOT))","")
     $(error "FATAL: Cannot access a u-boot binary at $(UBOOT)")
 endif
 
+MKIMAGE := $(shell mkimage -V 2> /dev/null)
+
+ifndef MKIMAGE
+    $(error "FATAL: Platform $(PLATFORM) needs mkimage in the path (from the u-boot-tools pkg on Debian derived systems)")
+endif
+
 QEMU_RAM_SZ=1024
 QEMU_MACHINE=virt
 PLATFORM_QEMUFLAGS=-cpu cortex-a57 -bios $(UBOOT)
