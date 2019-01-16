@@ -9,3 +9,5 @@ ifeq ("$(wildcard $(ARCH_CONFIG))","")
 endif
 
 include $(ARCH_CONFIG)
+
+build/harddrive.bin: build/filesystem.bin
