@@ -32,6 +32,9 @@ endif
 ifneq ($(gdb),yes)
 	QEMUFLAGS+=-s
 endif
+ifeq ($(qemu_logging),yes)
+	QEMUFLAGS+=-d in_asm -D /tmp/qemu-redox-$(ARCH).log
+endif
 ifeq ($(UNAME),Linux)
 	ifneq ($(kvm),no)
 		QEMUFLAGS+=-enable-kvm -cpu host
