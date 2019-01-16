@@ -36,6 +36,9 @@ ifneq ($(usb),no)
 endif
 ifeq ($(gdb),yes)
 	QEMUFLAGS+=-s
+	ifeq ($(gdb_halt),yes)
+		QEMUFLAGS+=-S
+	endif
 endif
 ifeq ($(qemu_logging),yes)
 	QEMUFLAGS+=-d in_asm -D /tmp/qemu-redox-$(ARCH).log
