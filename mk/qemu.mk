@@ -16,8 +16,13 @@ else
 	ifneq ($(bridge),)
 		QEMUFLAGS+=-netdev bridge,br=$(bridge),id=net0 -device e1000,netdev=net0,id=nic0
 	else
-		QEMUFLAGS+=-netdev user,id=net0 -device e1000,netdev=net0 \
-					-object filter-dump,id=f1,netdev=net0,file=build/network.pcap
+		ifeq ($(tftp),yes)
+			QEMUFLAGS+=-netdev user,id=net0,tftp=$(BUILDDIR) -device e1000,netdev=net0 \
+						-object filter-dump,id=f1,netdev=net0,file=build/network.pcap
+		else
+			QEMUFLAGS+=-netdev user,id=net0 -device e1000,netdev=net0 \
+						-object filter-dump,id=f1,netdev=net0,file=build/network.pcap
+		endif
 	endif
 	ifeq ($(net),redir)
 		QEMUFLAGS+=-redir tcp:8023::8023 -redir tcp:8080::8080
