@@ -21,3 +21,11 @@ KENTRYADDR=0x40001000
 
 build/livedisk.bin: build/kernel_live
 	cp $< $@
+
+post_kbuild_platform_hook:
+	@mkimage -A arm64 -O "linux" -T kernel -C none -a $(KLOADADDR) -e $(KENTRYADDR) -n 'Redox kernel (qemu AArch64 virt)' -d build/kernel_live build/kernel.uimage
+	$(eval UUID := $(shell cargo run --manifest-path redoxfs/Cargo.toml --release --bin redoxfs -- --get-uuid build/filesystem.bin | awk '{print $$NF}'))
+	@$(eval TMPFILE := $(shell mktemp))
+	@echo 'setenv bootargs REDOXFS_UUID=$(UUID) ; bootp 41000000 kernel.uimage ; bootm 41000000 - $${fdtcontroladdr}' > $(TMPFILE)
+	@mkimage -A arm64 -T script -C none -n 'Redox Bootscript' -d $(TMPFILE) build/kernel.bootscript
+	@rm -rf $(TMPFILE)
