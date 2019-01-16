@@ -3,6 +3,9 @@ ARCH?=x86_64
 INSTALLER_FLAGS?=--cookbook=cookbook
 PREFIX_RUSTC?=0
 
+include mk/arch/config.mk
+include mk/platform/config.mk
+
 # Per host variables
 UNAME := $(shell uname)
 ifeq ($(UNAME),Darwin)
