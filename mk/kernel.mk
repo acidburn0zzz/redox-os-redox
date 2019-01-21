@@ -2,7 +2,7 @@ build/libkernel.a: kernel/Cargo.lock kernel/Cargo.toml kernel/src/* kernel/src/*
 	export PATH="$(PREFIX_PATH):$$PATH" && \
 	export INITFS_FOLDER=$(ROOT)/build/initfs && \
 	cd kernel && \
-	xargo rustc --lib --target $(KTARGET) --release -- -C soft-float -C debuginfo=2 -C lto --emit link=../$@
+	xargo rustc --lib --target $(KTARGET) --release -- -C soft-float -C debuginfo=2 -C lto -C code-model=kernel --emit link=../$@
 
 build/libkernel_coreboot.a: kernel/Cargo.toml kernel/src/* kernel/src/*/* kernel/src/*/*/* kernel/src/*/*/*/* build/initfs_coreboot.tag
 	export PATH="$(PREFIX_PATH):$$PATH" && \
