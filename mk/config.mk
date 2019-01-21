@@ -43,7 +43,12 @@ READELF=$(TARGET)-readelf
 STRIP=$(TARGET)-strip
 
 # Kernel variables
-KTARGET=$(ARCH)-unknown-none
+ifeq ($(ARCH),aarch64)
+	KTARGET=$(ARCH)-unknown-redox
+else
+	KTARGET=$(ARCH)-unknown-none
+endif
+
 KBUILD=build/kernel
 
 # Userspace variables
