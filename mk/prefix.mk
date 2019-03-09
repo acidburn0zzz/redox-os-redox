@@ -76,7 +76,7 @@ $(PREFIX)/rust-freestanding-install: $(ROOT)/rust | $(PREFIX)/gcc-freestanding-i
 	cp -r "$(PREFIX)/gcc-freestanding-install" "$@"
 	cd "$(PREFIX)/rust-freestanding-build" && \
 	export PATH="$@/bin:$$PATH" && \
-	"$</configure" --prefix="$@" --disable-docs && \
+	"$</configure" --prefix="$@" --disable-docs --disable-manage-submodules && \
 	make -j `nproc` && \
 	make install -j `nproc`
 	mkdir -p "$@/lib/rustlib/x86_64-unknown-linux-gnu/bin"
