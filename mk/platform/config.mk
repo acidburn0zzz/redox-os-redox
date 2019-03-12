@@ -2,10 +2,10 @@ ifeq ($(PLATFORM),)
     $(error "FATAL: PLATFORM variable not set")
 endif
 
-PLATFORM_CONFIG=mk/platform/$(PLATFORM).mk
+PLATFORM_CONFIG=mk/platform/$(ARCH)/$(PLATFORM).mk
 
 ifeq ("$(wildcard $(PLATFORM_CONFIG))","")
-    $(error "FATAL: The $(PLATFORM) platform is not supported")
+    $(error "FATAL: No $(PLATFORM) platform with arch $(ARCH) is supported")
 endif
 
 include $(PLATFORM_CONFIG)
